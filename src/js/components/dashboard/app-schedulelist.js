@@ -1,15 +1,12 @@
 /** @jsx React.DOM */
 var React = require('react');
-var Login = require('../auth/app-login');
-var AuthStore = require('../../stores/app-auth.js');
 var DashboardStore = require('../../stores/app-dashboard.js');
-
 
 function getScheduleList() {
   return {scheduleList: DashboardStore.getScheduleList()}
 }
 
-var ScheduleList = React.createClass({
+module.exports = React.createClass({
   getInitialState: function() {
     return getScheduleList();
   },
@@ -32,5 +29,3 @@ var ScheduleList = React.createClass({
     );
   }
 });
-
-module.exports = ScheduleList;

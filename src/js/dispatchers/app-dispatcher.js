@@ -1,16 +1,18 @@
 var Dispatcher = require('flux').Dispatcher;
 var assign = require('object-assign');
 
-var AppDispatcher = assign(new Dispatcher(), {
+// this dispatcher shows the possibility to switch between actions
+// I think this is unnecessary...you may have only one or several dispatchers...
+// and not like this
+module.exports = assign(new Dispatcher(), {
   handleViewAction: function(action){
-    console.log("*****start handleViewAction******");
-    console.log(action);
-    console.log("*****end handleViewAction******");
     this.dispatch({
       source: 'VIEW_ACTION',
       action: action
     })
-  },
+  }
+	
+	/*
   handleRequestAction: function(action){
     console.log("*****start handleRequestAction******");
     console.log(action);
@@ -28,7 +30,6 @@ var AppDispatcher = assign(new Dispatcher(), {
       source: 'FB_OAUTH_ACTION',
       action: action
     })
-  },
+  }
+  */
 });
-
-module.exports = AppDispatcher;
