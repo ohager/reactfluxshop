@@ -10,9 +10,10 @@ module.exports = React.createClass({
   render: function () {
     return (
       <div>
-        <ul className="nav nav-tabs">
-          <li><Link to="about">About</Link></li>
-          <li><Link to="dashboard">Schedule Dashboard</Link></li>
+        <ul className="horizontal-menu">
+          <li><Link to="home">Home</Link></li>
+          <li><Link to="products">Product List</Link></li>
+          <li><Link to="orders">My Orders</Link></li>
         </ul>
         <br/>
       </div>

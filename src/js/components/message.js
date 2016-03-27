@@ -1,14 +1,20 @@
 /** @jsx React.DOM */
 var React = require('react');
-var ScheduleList = require('./app-schedulelist');
+var Router = require('react-router');
 
 module.exports = React.createClass({
+
+	propTypes : {
+		message : React.PropTypes.string.required
+	},
+
 	render: function () {
 		return (
 			<div>
-				<h1>Dashboard</h1>
-				<ScheduleList />
+				<h4>{this.props.message}</h4>
 			</div>
 		);
 	}
 });
+
+

@@ -1,20 +1,81 @@
-body {
-  font-family: "Helvetica Neue", Arial;
-  font-weight: 200;
+@import './lib/normalize.css';
+
+
+:root {
+    --headerColor : #111;
+    --mainColor: #f1f1f1;
 }
 
-h1, h2, h3 {
-  font-weight: 100;
+.clearfix:after {
+    content: "";
+    display: table;
+    clear: both;
 }
 
-a {
-  color: hsl(200, 50%, 50%);
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
 }
 
-a.active {
-  color: hsl(20, 50%, 50%);
+body{
+    font-family: sans-serif;
+    background: var(--mainColor);
 }
 
-.breadcrumbs a {
-  text-decoration: none;
+header {
+    padding: 1em;
+    color: white;
+    background: var(--headerColor);
+}
+
+header h1{
+    float:left;
+    margin: 0;
+    font-size:1.25rem;
+}
+
+
+menu {
+    display: block;
+    float: right;
+}
+
+menu ul {
+    list-style: none;
+}
+
+menu ul li{
+    float:left;
+    margin-left:1em;
+    cursor:pointer;
+    user-select:none;
+    opacity: .7
+}
+
+menu ul li:hover{
+    opacity: .5;
+}
+
+menu ul li.active{
+    opacity: 1;
+}
+
+
+.content{
+    padding: 1em;
+}
+
+.horizontal-menu {
+    border-bottom: solid 1px #aaa;
+    padding: 0.1em;
+}
+
+.horizontal-menu > li {
+    display: inline-block;
+    padding: 0.1em 0.5em;
+}
+
+li:hover{
+    background-color: #eee;
 }

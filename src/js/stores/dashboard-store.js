@@ -1,10 +1,9 @@
+
 var AppDispatcher = require('../dispatchers/app-dispatcher');
-var AppConstants = require('../constants/app-constants');
-var EventEmitter = require('events').EventEmitter;
+var AppConstants = require('../constants/constants');
 
 var BaseStore = require('../stores/base-store');
 var assign = require('object-assign');
-var React = require('react/addons');
 
 var CHANGE_EVENT = "change";
 
@@ -20,22 +19,19 @@ function _addItem(item){
 }
 
 // inheritance by composition - get rid of boilerplate
-var AppStore = assign({}, BaseStore, {
+var DashboardStore = assign({}, BaseStore, {
   getScheduleList: function(){
     return _scheduleList;
   }
 });
 
-AppDispatcher.register(function(payload){
+DashboardStore.dispatchToken = AppDispatcher.register(function(payload){
 	var action = payload.action; // this is our action from handleViewAction
 	switch(action.actionType){
-		/* SHORT USAGE BOILERPLATE (EXAMPLE - uncomment if required)
-		 case AppConstants.ADD_ITEM:
-		 _addItem(payload.action.item);
+		 case AppConstants.LOAD_SCHEDULE:
+			 DashboardStore.emitChange();
 		 break;
-		 */
 	}
-	AppStore.emitChange();
 });
 
-module.exports = AppStore;
+module.exports = DashboardStore;

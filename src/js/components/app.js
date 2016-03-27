@@ -1,14 +1,14 @@
 /** @jsx React.DOM */
 var React = require('react');
 var RouteHandler = require('react-router').RouteHandler;
-var Template = require('./app-template');
+var Layout = require('./layout');
 
 module.exports = React.createClass({
   render: function () {
     return (
-      <Template>
+      <Layout>
         <RouteHandler/>
-      </Template>
+      </Layout>
     );
   }
 });
