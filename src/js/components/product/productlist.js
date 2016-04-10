@@ -1,4 +1,6 @@
 var React = require('react');
+var ProductCard = require('./productcard');
+
 
 module.exports = React.createClass({
 
@@ -8,14 +10,13 @@ module.exports = React.createClass({
 
 	render: function () {
 		return (
-			<ul>
+			<div>
 				{
-					this.props.products.map(function(product, index)
-					{
-						return <li key={index}>{product.name}</li>
+					this.props.products.map(function (product, index) {
+						return <ProductCard key={index} product={product}/>
 					})
 				}
-			</ul>
+			</div>
 		)
 	}
 });

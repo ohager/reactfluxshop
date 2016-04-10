@@ -46,20 +46,10 @@ gulp
       base: 'http://localhost',
       livereload: true
     });
-  })  
- 
-  // opens the application in chrome
-  .task('open', function(){
-    gulp
-      .src('dist/index.html')
-      .pipe(
-        open('', {app: 'google chrome',url: 'http://localhost:3000/'})
-      );
   })
  
- 
   // build the application
-  .task('default', ['browserify', 'copy', 'connect', 'open'])
+  .task('default', ['browserify', 'copy', 'connect'])
   .task('default2', ['browserify', 'copy'])
   
   // watch for source changes

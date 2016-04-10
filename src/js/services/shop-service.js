@@ -5,9 +5,8 @@ const AsyncTimeout = 0;
 // mocking here!
 var productsMockup = [{
 	id: 1,
-	name: "Product 1",
+	title: "Product 1",
 	price: 12.99,
-	img: "",
 	stock: 10,
 	cart: 0,
 	img: 'http://lorempixel.com/200/200/technics?1',
@@ -15,9 +14,8 @@ var productsMockup = [{
 },
 	{
 		id: 2,
-		name: "Test 2",
+		title: "Test 2",
 		price: 10.99,
-		img: "",
 		stock: 20,
 		cart: 0,
 		img: 'http://lorempixel.com/200/200/technics?2',

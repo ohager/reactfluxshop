@@ -1,81 +1,26 @@
-@import './lib/normalize.css';
-
-
-:root {
-    --headerColor : #111;
-    --mainColor: #f1f1f1;
-}
-
-.clearfix:after {
-    content: "";
-    display: table;
-    clear: both;
-}
-
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-}
-
-body{
-    font-family: sans-serif;
-    background: var(--mainColor);
-}
-
-header {
-    padding: 1em;
-    color: white;
-    background: var(--headerColor);
-}
-
-header h1{
-    float:left;
-    margin: 0;
-    font-size:1.25rem;
-}
-
-
-menu {
-    display: block;
-    float: right;
-}
-
-menu ul {
-    list-style: none;
-}
-
-menu ul li{
-    float:left;
-    margin-left:1em;
-    cursor:pointer;
-    user-select:none;
-    opacity: .7
-}
-
-menu ul li:hover{
-    opacity: .5;
-}
-
-menu ul li.active{
-    opacity: 1;
-}
-
-
-.content{
-    padding: 1em;
-}
-
 .horizontal-menu {
     border-bottom: solid 1px #aaa;
-    padding: 0.1em;
+    margin : 0;
 }
 
 .horizontal-menu > li {
     display: inline-block;
-    padding: 0.1em 0.5em;
+    padding: 1em 0;
 }
 
 li:hover{
     background-color: #eee;
 }
+
+.horizontal-menu > li > a {
+    padding: 1.0em 1.5em;
+    text-decoration: none;
+    color: #222;
+    font-weight: 600;
+}
+
+.image-medium {
+    height: 160px;
+    max-height: 160px;
+}
+
