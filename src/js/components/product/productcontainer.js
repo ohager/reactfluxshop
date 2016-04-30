@@ -1,10 +1,11 @@
-var React = require('react');
+
 var ShopStore = require('../../stores/shop-store');
 var ShopActions = require('../../actions/shop-actions');
+var AppActions = require('../../actions/application-actions');
 var ProductList = require('./productlist');
 
 
-module.exports = React.createClass({
+var ProductContainer = React.createClass({
 
 	getInitialState : function(){
 		return {products : []}
@@ -23,9 +24,15 @@ module.exports = React.createClass({
 		ShopStore.removeChangeListener(this.onProductsChanged);
 	},
 
+	onAddProduct : function(product){
+		AppActions.raiseMessage("Added Product");
+	},
+
 	render: function () {
 		return (
-			<ProductList products={this.state.products}></ProductList>
+			<ProductList products={this.state.products} onAddProduct={this.onAddProduct}></ProductList>
 		);
 	}
 });
+
+module.exports = ProductContainer;

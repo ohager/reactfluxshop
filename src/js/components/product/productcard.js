@@ -1,6 +1,6 @@
 var React = require('react');
 
-module.exports = React.createClass({
+var ProductCard = React.createClass({
 	propTypes: {
 		product : React.PropTypes.shape({
 			title: React.PropTypes.string,
@@ -9,7 +9,12 @@ module.exports = React.createClass({
 			sku : React.PropTypes.string,
 			price : React.PropTypes.number,
 			inStock: React.PropTypes.number
-		})
+		}),
+		onAddProduct : React.PropTypes.func.isRequired
+	},
+
+	onAddClick : function(){
+		this.props.onAddProduct(this.props.product);
 	},
 
 	render: function () {
@@ -27,9 +32,13 @@ module.exports = React.createClass({
 						</div>
 					</div>
 				</div>
-				<div className="card__content card__content--divider">Footer</div>
+				<div className="card__content card__content--divider">
+					<button className="button button--primary" onClick={this.onAddClick}>Add</button>
+				</div>
 			</div>
 
 		);
 	}
 });
+
+module.exports = ProductCard;

@@ -1,6 +1,7 @@
 // Action Constants
 module.exports = {
 	Action : {
-		LoadProduct: 'LoadProduct'
+		LoadProduct: 'LoadProduct',
+		RaiseMessage: 'RaiseMessage'
 	}
 };

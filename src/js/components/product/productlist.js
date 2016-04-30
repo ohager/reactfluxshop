@@ -5,7 +5,8 @@ var ProductCard = require('./productcard');
 module.exports = React.createClass({
 
 	propTypes : {
-		products : React.PropTypes.any
+		products : React.PropTypes.any,
+		onAddProduct : React.PropTypes.func.isRequired
 	},
 
 	render: function () {
@@ -13,8 +14,8 @@ module.exports = React.createClass({
 			<div>
 				{
 					this.props.products.map(function (product, index) {
-						return <ProductCard key={index} product={product}/>
-					})
+						return <ProductCard key={index} product={product} onAddProduct={this.props.onAddProduct}/>
+					}.bind(this))
 				}
 			</div>
 		)

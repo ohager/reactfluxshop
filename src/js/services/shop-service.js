@@ -32,7 +32,7 @@ function findProductById(id){
 	return undefined;
 }
 
-module.exports = {
+var ShopService = {
 	loadProducts : function(){
 		return new Promise( (resolve, reject)=>{
 			resolve(productsMockup.slice());
@@ -68,3 +68,4 @@ module.exports = {
 	}
 };
 
+module.exports = ShopService;

@@ -1,6 +1,7 @@
 /** @jsx React.DOM */
 var React = require('react');
 var Header = require('./header/header');
+var MessageContainer = require('./message/messagecontainer');
 
 module.exports = React.createClass({
 	getInitialState: function () {
@@ -17,6 +18,7 @@ module.exports = React.createClass({
 		return (
 			<div>
 				<Header/>
+				<MessageContainer/>
 				<div className="grid">
 					<div className="grid__cell grid__cell--width-70">
 						<div className="container container--large">

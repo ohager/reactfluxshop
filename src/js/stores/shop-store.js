@@ -1,10 +1,8 @@
-var Dispatcher = require('../dispatchers/app-dispatcher');
 var Constants = require('../constants/constants');
 var BaseStore = require('../stores/base-store');
-var assign = require('object-assign');
 var ShopService = require('../services/shop-service');
-
-var Immutable = require('../../../node_modules/immutable/dist/immutable.min');
+var assign = require('object-assign');
+var Immutable = require('immutable');
 
 
 // inheritance by composition - get rid of boilerplate
