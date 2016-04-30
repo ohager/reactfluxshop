@@ -7,17 +7,17 @@ var Immutable = require('immutable');
 
 // inheritance by composition - get rid of boilerplate
 var ShopStore = assign({}, BaseStore, {
-	_products : [],
+	_products : Immutable.List(),
 
 	onLoadProducts : function(){
 		ShopService.loadProducts().then(function(products){
-			this._products = products;
+			this._products = Immutable.List(products);
 			this.emitChange();
 		}.bind(this));
 	},
 
 	getProducts: function(){
-		return this._products.slice();
+		return this._products; // is immutable
 	}
 });
 	

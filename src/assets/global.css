@@ -1,9 +1,18 @@
-.horizontal-menu {
+@import "components/message.css";
+
+.body {
+    margin-top: 2em;
+}
+
+.horizontal-menu{
     border-bottom: solid 1px #aaa;
+    align-items: center;
+}
+.horizontal-menu  ul {
     margin : 0;
 }
 
-.horizontal-menu > li {
+.horizontal-menu  li {
     display: inline-block;
     padding: 1em 0;
 }
@@ -12,7 +21,7 @@ li:hover{
     background-color: #eee;
 }
 
-.horizontal-menu > li > a {
+.horizontal-menu li > a {
     padding: 1.0em 1.5em;
     text-decoration: none;
     color: #222;
@@ -23,6 +32,3 @@ li:hover{
     height: 160px;
     max-height: 160px;
 }
-
-
-

@@ -3,6 +3,7 @@ var Dispatcher = require('flux').Dispatcher;
 
 // global variables for often used objects
 window.React = require('react'); 
+window._ = require('lodash');
 window.Dispatcher = new Dispatcher();
 
 var Router = require('react-router');

@@ -19,7 +19,7 @@ module.exports = React.createClass({
 			<div>
 				<Header/>
 				<MessageContainer/>
-				<div className="grid">
+				<div className="body grid">
 					<div className="grid__cell grid__cell--width-70">
 						<div className="container container--large">
 						{this.props.children}

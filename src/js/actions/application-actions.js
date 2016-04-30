@@ -14,5 +14,16 @@ module.exports = {
 			payload.message="";
 			Dispatcher.dispatch(payload);
 		},3000);
+	},
+
+	search : function(searchTerm){
+
+		var payload = {
+			'actionType': Constants.Action.Search,
+			'term': searchTerm
+		};
+
+		Dispatcher.dispatch(payload);
 	}
+
 };
