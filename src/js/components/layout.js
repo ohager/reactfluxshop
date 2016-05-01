@@ -2,6 +2,7 @@
 var React = require('react');
 var Header = require('./header/header');
 var MessageContainer = require('./message/messagecontainer');
+var CartContainer = require('./cart/cartcontainer');
 
 module.exports = React.createClass({
 	getInitialState: function () {
@@ -25,8 +26,8 @@ module.exports = React.createClass({
 						{this.props.children}
 						</div>
 					</div>
-					<div className="grid__cell grid__cell">
-						<h3>CartContainer</h3>
+					<div className="grid__cell grid__cell--width-30 cart">
+						<CartContainer/>
 					</div>
 				</div>
 			</div>

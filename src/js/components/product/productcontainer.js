@@ -36,7 +36,7 @@ var ProductContainer = React.createClass({
 	},
 
 	onAddProduct : function(product){
-		AppActions.raiseMessage("Added Product");
+		ShopActions.addProductToCart(product);
 	},
 
 	render: function () {

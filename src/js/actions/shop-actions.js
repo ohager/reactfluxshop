@@ -16,5 +16,11 @@ module.exports = {
 			'actionType': Constants.ShopAction.FilterProducts,
 			'filter': filter
 		});
+	},
+	addProductToCart : function(product){
+		Dispatcher.dispatch({
+			'actionType': Constants.ShopAction.AddProductToCart,
+			'product': product
+		});
 	}
 };

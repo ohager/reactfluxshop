@@ -1,32 +1,13 @@
+@import "text.css";
+
+@import "components/menu.css";
 @import "components/message.css";
+@import "components/cart.css";
 
 .body {
-    margin-top: 2em;
+    margin-top: 90px;
 }
 
-.horizontal-menu{
-    border-bottom: solid 1px #aaa;
-    align-items: center;
-}
-.horizontal-menu  ul {
-    margin : 0;
-}
-
-.horizontal-menu  li {
-    display: inline-block;
-    padding: 1em 0;
-}
-
-li:hover{
-    background-color: #eee;
-}
-
-.horizontal-menu li > a {
-    padding: 1.0em 1.5em;
-    text-decoration: none;
-    color: #222;
-    font-weight: 600;
-}
 
 .image-medium {
     height: 160px;
