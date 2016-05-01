@@ -1,15 +1,14 @@
 var ShopStore = require('../../stores/shop-store');
-
 var Cart = require('./cart');
 
 var CartContainer = React.createClass({
 
 	getInitialState : function(){
-		return { products: ShopStore.getProductsInCart() }
+		return { products: ShopStore.getProductsInCart()}
 	},
 
 	onShopChanged : function(){
-		this.setState({ products : ShopStore.getProductsInCart() } );
+		this.setState({ products : ShopStore.getProductsInCart()});
 	},
 
 	componentWillMount : function(){
@@ -20,11 +19,10 @@ var CartContainer = React.createClass({
 		ShopStore.removeChangeListener(this.onShopChanged);
 	},
 
-	/*
-	shouldComponentUpdate : function(nextProps, nextState){
-		return nextState.products.length != this.state.products.length && ;
+	shouldComponentUpdate: function(nextProps, nextState){
+		return this.state.products != nextState.products;
 	},
-	*/
+
 
 	render: function () {
 		return (
