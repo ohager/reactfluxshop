@@ -3,12 +3,13 @@ var React = require('react');
 var ProductCard = React.createClass({
 	propTypes: {
 		product : React.PropTypes.shape({
+			id : React.PropTypes.number,
 			title: React.PropTypes.string,
 			description : React.PropTypes.string,
 			img: React.PropTypes.string,
-			sku : React.PropTypes.string,
 			price : React.PropTypes.number,
-			inStock: React.PropTypes.number
+			stock: React.PropTypes.number,
+			cart: React.PropTypes.number
 		}),
 		onAddProduct : React.PropTypes.func.isRequired
 	},

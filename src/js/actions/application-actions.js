@@ -4,7 +4,7 @@ var Constants = require('../constants/constants.js');
 module.exports = {
 	raiseMessage: function (message) {
 		var payload = {
-			'actionType': Constants.Action.RaiseMessage,
+			'actionType': Constants.AppAction.RaiseMessage,
 			'message': message
 		};
 
@@ -18,12 +18,10 @@ module.exports = {
 
 	search : function(searchTerm){
 
-		var payload = {
-			'actionType': Constants.Action.Search,
+		Dispatcher.dispatch({
+			'actionType': Constants.AppAction.Search,
 			'term': searchTerm
-		};
-
-		Dispatcher.dispatch(payload);
+		});
 	}
 
 };

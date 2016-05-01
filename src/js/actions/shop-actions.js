@@ -1,12 +1,20 @@
 /** @jsx React.DOM */
 var Constants = require('../constants/constants.js');
+var ShopService = require('../services/shop-service');
 
 module.exports = {
 	loadProducts: function () {
-
-		var payload = {
-			'actionType': Constants.Action.LoadProduct
-		};
-		Dispatcher.dispatch(payload);
+		ShopService.loadProducts().then(function (products) {
+			Dispatcher.dispatch({
+				'actionType': Constants.ShopAction.LoadProducts,
+				'products': products
+			});
+		}.bind(this));
+	},
+	filterProducts: function (filter) {
+		Dispatcher.dispatch({
+			'actionType': Constants.ShopAction.FilterProducts,
+			'filter': filter
+		});
 	}
 };

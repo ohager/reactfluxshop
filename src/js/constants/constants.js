@@ -1,9 +1,13 @@
 // Action Constants
 module.exports = {
 	// todo: separate by store/action providers
-	Action : {
-		LoadProduct: 'LoadProduct',
+	AppAction : {
 		RaiseMessage: 'RaiseMessage',
-		Search: 'Search',
+		Search: 'Search'
+	},
+	ShopAction: {
+		LoadProducts: 'LoadProducts',
+		FilterProducts: 'FilterProducts'
 	}
+
 };

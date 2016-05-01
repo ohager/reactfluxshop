@@ -1,28 +1,28 @@
-
-var Dispatcher = require('flux').Dispatcher;
-
 // global variables for often used objects
-window.React = require('react'); 
+window.React = require('react');
 window._ = require('lodash');
-window.Dispatcher = new Dispatcher();
+window.Dispatcher = require('./utils/dispatcher');
 
-var Router = require('react-router');
-var Route = Router.Route;
+var ReactDOM = require('react-dom');
+var ReactRouter = require('react-router');
+var Router = ReactRouter.Router;
+var Route = ReactRouter.Route;
+var IndexRoute = ReactRouter.IndexRoute;
+var RouterHistory = ReactRouter.hashHistory;
 
 var App = require('./components/app');
 var ProductContainer = require('./components/product/productcontainer');
 var OrderContainer = require('./components/order/ordercontainer');
 var Home = require('./components/home');
 
-var routes = (
-	<Route handler={App}>
-		<Route name="/" handler={Home}/>
-		<Route name="home" handler={Home}/>
-		<Route name="products" handler={ProductContainer}/>
-		<Route name="orders" handler={OrderContainer}/>
-	</Route>
+var router = (
+	<Router history={RouterHistory}>
+		<Route path="/" component={App}>
+			<IndexRoute component={Home}/>
+			<Route path="products" component={ProductContainer}/>
+			<Route path="orders" component={OrderContainer}/>
+		</Route>
+	</Router>
 );
 
-Router.run(routes, function (Handler) {
-	React.render(<Handler/>, document.getElementById('app'));
-});
+ReactDOM.render(router, document.getElementById('app'));

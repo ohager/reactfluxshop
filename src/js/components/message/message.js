@@ -17,7 +17,7 @@ var Message = React.createClass({
 
 		if(!this.refs.message) return;
 
-		var element = this.refs.message.getDOMNode();
+		var element = this.refs.message;
 
 		snabbt(element, {
 			fromOpacity : 0,

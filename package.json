@@ -5,11 +5,13 @@
   "main": "gulpfile.js",
   "dependencies": {
     "flux": "^2.0.3",
-    "immutable": "^3.7.6",
+    "immutable": "^3.8.1",
     "lodash": "^4.11.1",
     "object-assign": "2.0.0",
-    "react": "^0.13.3",
-    "react-router": "^0.13.3",
+    "react": "^15.0.2",
+    "react-dom": "^15.0.2",
+    "react-router": "^2.4.0",
+    "seamless-immutable": "^6.1.0",
     "snabbt.js": "^0.6.4",
     "superagent": "0.21.0"
   },

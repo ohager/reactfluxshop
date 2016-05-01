@@ -1,17 +1,18 @@
 /** @jsx React.DOM */
-var React = require('react');
-var RouteHandler = require('react-router').RouteHandler;
+
 var Layout = require('./layout');
 
-module.exports = React.createClass({
+var App = React.createClass({
   render: function () {
     return (
       <Layout>
-        <RouteHandler/>
+		  {this.props.children}
       </Layout>
     );
   }
 });
+
+module.exports = App;
 
 
 

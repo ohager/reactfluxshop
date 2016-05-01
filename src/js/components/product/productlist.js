@@ -13,7 +13,7 @@ module.exports = React.createClass({
 		return (
 			<div>
 				{
-					this.props.products.map(function (product, index) {
+					_.map(this.props.products,function (product, index) {
 						return <ProductCard key={index} product={product} onAddProduct={this.props.onAddProduct}/>
 					}.bind(this))
 				}

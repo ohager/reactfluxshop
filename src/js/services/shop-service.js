@@ -1,18 +1,18 @@
-
 const loremIpsum = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras eu orci ornare, aliquam risus a, condimentum purus. Vestibulum erat tellus, pulvinar ac libero in, maximus aliquet elit. Nulla facilisi. Mauris sagittis varius hendrerit. Quisque vitae lorem in turpis laoreet cursus. Donec pretium sed nisi vitae finibus. Nullam pretium est a dui pharetra viverra. Nulla et libero vitae sem dignissim maximus. Sed porttitor, felis sit amet ultricies hendrerit, quam eros mattis nulla, eget auctor urna urna sed massa. Nullam aliquam risus nisl, a imperdiet mauris sollicitudin quis. Curabitur id finibus felis, vel volutpat tellus. Nulla ultrices interdum velit, vitae rutrum risus aliquam at. Nam laoreet sapien sit amet sapien vehicula blandit."
-const OrderSeed = Math.ceil((Math.random() * 100)+1);
+const OrderSeed = Math.ceil((Math.random() * 100) + 1);
 const AsyncTimeout = 0;
 
 // mocking here!
-var productsMockup = [{
-	id: 1,
-	title: "Product 1",
-	price: 12.99,
-	stock: 10,
-	cart: 0,
-	img: 'http://lorempixel.com/200/200/technics?1',
-	description: loremIpsum
-},
+var productsMockup = [
+	{
+		id: 1,
+		title: "Product 1",
+		price: 12.99,
+		stock: 10,
+		cart: 0,
+		img: 'http://lorempixel.com/200/200/technics?1',
+		description: loremIpsum
+	},
 	{
 		id: 2,
 		title: "Test 2",
@@ -21,55 +21,65 @@ var productsMockup = [{
 		cart: 0,
 		img: 'http://lorempixel.com/200/200/technics?2',
 		description: loremIpsum
-	}];
+	},
+	{
+		id: 3,
+		title: "Fantastic Test Shit",
+		price: 124.99,
+		stock: 7,
+		cart: 0,
+		img: 'http://lorempixel.com/200/200/technics?3',
+		description: loremIpsum
+	}
+];
 
 var ordersMockup = [];
 
-function findProductById(id){
+function findProductById(id) {
 
-	return  _.find(productsMockup, { 'id' : id } );
+	return _.find(productsMockup, {'id': id});
 	/*
-	let products = productsMockup;
-	for(let i=0; i<products.length;++i){
-		if(products[i].id===id) return i;
-	}
-	return undefined;
-	*/
+	 let products = productsMockup;
+	 for(let i=0; i<products.length;++i){
+	 if(products[i].id===id) return i;
+	 }
+	 return undefined;
+	 */
 }
 
 var ShopService = {
-	loadProducts : function(){
-		return new Promise( (resolve, reject)=>{
+	loadProducts: function () {
+		return new Promise((resolve, reject)=> {
 			resolve(productsMockup.slice());
-			setTimeout( () => {
+			setTimeout(() => {
 			}, AsyncTimeout);
-		} );
+		});
 	},
-	loadOrders : function(){
-		return new Promise( (resolve, reject)=>{
+	loadOrders: function () {
+		return new Promise((resolve, reject)=> {
 			resolve(ordersMockup.slice());
-			setTimeout( () => {
+			setTimeout(() => {
 			}, AsyncTimeout);
-		} );
+		});
 	},
-	createOrder: function( orderedProducts ){
+	createOrder: function (orderedProducts) {
 
-		return new Promise( (resolve, reject)=>{
+		return new Promise((resolve, reject)=> {
 
 			ordersMockup.push({
 				id: ordersMockup.length + OrderSeed,
 				date: new Date(),
-				products: orderedProducts.map( _.clone )
+				products: orderedProducts.map(_.clone)
 			});
 
-			for(let i=0; i< orderedProducts.length; ++i){
+			for (let i = 0; i < orderedProducts.length; ++i) {
 				let pi = findProductById(orderedProducts[i].id);
 				productsMockup[pi].stock -= productsMockup[pi].cart;
 				productsMockup[pi].cart = 0;
 			}
 
 			resolve();
-		}, AsyncTimeout );
+		}, AsyncTimeout);
 	}
 };
 
