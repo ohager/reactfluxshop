@@ -12,7 +12,7 @@ var Header = React.createClass({
 			<div className="grid horizontal-menu">
 				<div className="grid__cell">
 					<ul>
-						<li><Link to="home">Home</Link></li>
+						<li><Link to="">Home</Link></li>
 						<li><Link to="products">Product List</Link></li>
 						<li><Link to="orders">My Orders</Link></li>
 					</ul>
