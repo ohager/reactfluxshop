@@ -1,3 +1,4 @@
+
 // global variables for often used objects
 window.React = require('react');
 window._ = require('lodash');
