@@ -1,0 +1,11 @@
+.toasts-container{
+    position: fixed;
+    left: 50%;
+    top: 10px;
+    opacity: 0.8;
+}
+
+.toasts--topcenter{
+    position: relative;
+    left: -50%
+}
