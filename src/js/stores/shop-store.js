@@ -16,7 +16,6 @@ Product Example
  */
 
 var _products = Immutable([]);
-var _filteredProducts = Immutable([]);
 
 // inheritance by composition - get rid of boilerplate
 var ShopStore = _.assign({}, BaseStore, {
@@ -26,23 +25,13 @@ var ShopStore = _.assign({}, BaseStore, {
 		this.emitChange();
 	},
 
-	onFilterProducts: function(filter){
-		var filtered = _products.filter( function(product){
-			return product.description.indexOf(filter) >= 0 ||
-					product.title.indexOf(filter) >= 0;
-		});
-
-		_filteredProducts = Immutable(filtered);
-		this.emitChange();
-	},
-
 	onAddProductToCart : function(product){
-		var mutables = _products.asMutable({deep:true});
+		var mutableProducts = _products.asMutable({deep:true});
 
-		var tocart = _.find(mutables,{'id' : product.id});
+		var tocart = _.find(mutableProducts,{'id' : product.id});
 		tocart.cart++;
 
-		_products = Immutable(mutables);
+		_products = Immutable(mutableProducts);
 		this.emitChange();
 	},
 
@@ -54,12 +43,7 @@ var ShopStore = _.assign({}, BaseStore, {
 		return Immutable(_products.filter(function(p){
 			return p.cart > 0;
 		}));
-	},
-
-	getFilteredProducts: function(){
-		return _filteredProducts;
 	}
-
 });
 
 ShopStore.dispatchToken = Dispatcher.register(function (action) {

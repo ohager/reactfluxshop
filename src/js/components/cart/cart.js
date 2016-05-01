@@ -1,19 +1,42 @@
-
 var CartItem = require('./cartitem');
+var snabbt = require('snabbt.js/snabbt.min');
 
 var Cart = React.createClass({
 
-	propTypes : {
-		products : React.PropTypes.array.isRequired
+	propTypes: {
+		products: React.PropTypes.array.isRequired
 	},
+
+	isEmpty : function(){
+		return !this.props.products.length;
+	},
+
+	calculateTotal : function(){
+		return _.reduce( this.props.products, function(p,c){
+			return p + (c.cart * c.price);
+		},0).toFixed(2);
+	},
+
+	componentDidUpdate : function(){
+
+		if(this.isEmpty()) return;
+
+		var element = this.refs.cart;
+		snabbt(element, 'attention', {
+			rotation: [0, 0, Math.PI / 8],
+			springConstant: 1.9,
+			springDeceleration: 0.9
+		});
+	},
+
 
 	render: function () {
 
-		var isEmpty = !this.props.products.length;
-		var total =  0;
+		var isEmpty = this.isEmpty();
+		var total = this.calculateTotal();
 
 		return (
-			<div className="card card--higher">
+			<div ref="cart" className="card card--higher">
 				<div className="card__content card__content--divider heading">
             <span>
                 <i className="fa fa-shopping-cart"></i>

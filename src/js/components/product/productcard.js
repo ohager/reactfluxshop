@@ -33,8 +33,16 @@ var ProductCard = React.createClass({
 						</div>
 					</div>
 				</div>
-				<div className="card__content card__content--divider right-text">
-					<button className="button button--primary" onClick={this.onAddClick}>Add To Cart</button>
+				<div className="card__content card__content--divider">
+					<div className="grid ">
+						<div className="grid__cell grid__cell--width-50">
+							<span>In Stock: {product.stock}</span>
+						</div>
+						<div className="grid__cell right-text">
+							<button className="button button--primary" onClick={this.onAddClick}>Add To Cart</button>
+						</div>
+					</div>
+
 				</div>
 			</div>
 

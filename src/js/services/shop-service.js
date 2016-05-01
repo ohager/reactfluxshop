@@ -36,29 +36,27 @@ var productsMockup = [
 var ordersMockup = [];
 
 function findProductById(id) {
-
 	return _.find(productsMockup, {'id': id});
-	/*
-	 let products = productsMockup;
-	 for(let i=0; i<products.length;++i){
-	 if(products[i].id===id) return i;
-	 }
-	 return undefined;
-	 */
 }
 
 var ShopService = {
-	loadProducts: function () {
+	loadProducts: function (filter) {
 		return new Promise((resolve, reject)=> {
-			resolve(productsMockup.slice());
+
+			var regexp = new RegExp(filter);
+			var filtered = filter ? productsMockup.filter( (product) => {
+				return 	regexp.test(product.description) || regexp.test(product.title)
+			}) : productsMockup;
+
 			setTimeout(() => {
+				resolve(_.cloneDeep(filtered));
 			}, AsyncTimeout);
 		});
 	},
 	loadOrders: function () {
 		return new Promise((resolve, reject)=> {
-			resolve(ordersMockup.slice());
 			setTimeout(() => {
+				resolve(ordersMockup.slice());
 			}, AsyncTimeout);
 		});
 	},

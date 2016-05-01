@@ -13,15 +13,13 @@ var ProductContainer = React.createClass({
 	},
 
 	onProductsChanged : function(){
-
-		var products =  this.state.filter ? ShopStore.getFilteredProducts() : ShopStore.getProducts();
-
+		var products =  ShopStore.getProducts();
 		this.setState( {products : products });
 	},
 
 	onSearch : function(){
-		this.setState({filter:AppStore.getSearchTerm()});
-		ShopActions.filterProducts(this.state.filter);
+		this.setState({filter : AppStore.getSearchTerm()});
+		ShopActions.loadProducts(this.state.filter);
 	},
 
 	componentWillMount : function(){
