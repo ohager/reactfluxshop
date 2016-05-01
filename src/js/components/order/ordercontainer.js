@@ -1,7 +1,16 @@
-var React = require('react');
+var OrderList = require('./orderlist');
 
-module.exports = React.createClass({
+var OrderContainer = React.createClass({
+
+	getInitialState : function(){
+		return { orders: [] }
+	},
+
 	render: function () {
-		return <h1>OrderContainer</h1>;
+		return (
+			<OrderList order={this.state.orders} />
+		)
 	}
 });
+
+module.exports = OrderContainer;

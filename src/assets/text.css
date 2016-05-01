@@ -1,0 +1,16 @@
+.center-text{
+    text-align: center;
+}
+
+.right-text{
+    text-align : right;
+}
+
+.large-text{
+    font-size : 20px;
+}
+
+.grey-text {
+    color: #DDD;
+}
+

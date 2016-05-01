@@ -36,8 +36,24 @@ var ShopStore = _.assign({}, BaseStore, {
 		this.emitChange();
 	},
 
+	onAddProductToCart : function(product){
+		var mutables = _products.asMutable({deep:true});
+
+		var tocart = _.find(mutables,{'id' : product.id});
+		tocart.cart++;
+
+		_products = Immutable(mutables);
+		this.emitChange();
+	},
+
 	getProducts: function () {
 		return _products; // is immutable
+	},
+
+	getProductsInCart: function () {
+		return Immutable(_products.filter(function(p){
+			return p.cart > 0;
+		}));
 	},
 
 	getFilteredProducts: function(){
@@ -54,7 +70,9 @@ ShopStore.dispatchToken = Dispatcher.register(function (action) {
 		case Constants.ShopAction.FilterProducts:
 			ShopStore.onFilterProducts(action.filter);
 			break;
-
+		case Constants.ShopAction.AddProductToCart:
+			ShopStore.onAddProductToCart(action.product);
+			break;
 	}
 });
 

@@ -1,0 +1,15 @@
+.cart{
+    position: fixed;
+    width : 30%;
+}
+
+.card__content > ul {
+    margin: 0;
+    padding: 0;
+}
+
+.card__content  .total {
+    font-size: 1em;
+    text-align: right;
+}
+
