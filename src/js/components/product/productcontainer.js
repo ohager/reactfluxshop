@@ -20,12 +20,14 @@ var ProductContainer = React.createClass({
 	onSearch : function(){
 		this.setState({filter : AppStore.getSearchTerm()});
 		ShopActions.loadProducts(this.state.filter);
+
 	},
 
 	componentWillMount : function(){
 		ShopStore.addChangeListener(this.onProductsChanged);
 		AppStore.addChangeListener(this.onSearch);
 		ShopActions.loadProducts();
+		ShopActions.loadCart();
 	},
 
 	componentWillUnmount : function(){

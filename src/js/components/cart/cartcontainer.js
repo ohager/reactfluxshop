@@ -1,4 +1,5 @@
 var ShopStore = require('../../stores/shop-store');
+var ShopActions = require('../../actions/shop-actions');
 var Cart = require('./cart');
 
 var CartContainer = React.createClass({
@@ -23,10 +24,13 @@ var CartContainer = React.createClass({
 		return this.state.products != nextState.products;
 	},
 
+	orderCart : function(){
+		ShopActions.createOrder()
+	},
 
 	render: function () {
 		return (
-			<Cart products={this.state.products} />
+			<Cart products={this.state.products} onOrder={this.orderCart} />
 		)
 	}
 });

@@ -11,10 +11,29 @@ module.exports = {
 			});
 		}.bind(this));
 	},
+	loadCart: function () {
+		ShopService.loadCart().then(function (productsInCart) {
+			Dispatcher.dispatch({
+				'actionType': Constants.ShopAction.LoadCart,
+				'productsInCart': productsInCart
+			});
+		}.bind(this));
+	},
 	addProductToCart : function(product){
-		Dispatcher.dispatch({
-			'actionType': Constants.ShopAction.AddProductToCart,
-			'product': product
+		ShopService.addProductToCart(product.id).then(function(productsInCart){
+
+			Dispatcher.dispatch({
+				'actionType': Constants.ShopAction.AddProductToCart,
+				'productsInCart': productsInCart
+			});
 		});
+	},
+	createOrder : function(productsInCart){
+		ShopService.createOrder(productsInCart).then(function(orders){
+			Dispatcher.dispatch({
+				'actionType': Constants.ShopAction.CreateOrder,
+				'orders': orders
+			})
+		})
 	}
 };

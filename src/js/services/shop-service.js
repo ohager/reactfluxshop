@@ -1,9 +1,10 @@
+var MockRepository = require('./MockRepository');
+
 const loremIpsum = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras eu orci ornare, aliquam risus a, condimentum purus. Vestibulum erat tellus, pulvinar ac libero in, maximus aliquet elit. Nulla facilisi. Mauris sagittis varius hendrerit. Quisque vitae lorem in turpis laoreet cursus. Donec pretium sed nisi vitae finibus. Nullam pretium est a dui pharetra viverra. Nulla et libero vitae sem dignissim maximus. Sed porttitor, felis sit amet ultricies hendrerit, quam eros mattis nulla, eget auctor urna urna sed massa. Nullam aliquam risus nisl, a imperdiet mauris sollicitudin quis. Curabitur id finibus felis, vel volutpat tellus. Nulla ultrices interdum velit, vitae rutrum risus aliquam at. Nam laoreet sapien sit amet sapien vehicula blandit."
 const OrderSeed = Math.ceil((Math.random() * 100) + 1);
 const AsyncTimeout = 0;
 
-// mocking here!
-var productsMockup = [
+var _initialProducts = [
 	{
 		id: 1,
 		title: "Product 1",
@@ -33,30 +34,51 @@ var productsMockup = [
 	}
 ];
 
-var ordersMockup = [];
+var productsRepository = _.assign(new MockRepository("product", _initialProducts), {});
+var ordersRepository = _.assign(new MockRepository("order", []), {});
 
-function findProductById(id) {
-	return _.find(productsMockup, {'id': id});
-}
 
 var ShopService = {
 	loadProducts: function (filter) {
 		return new Promise((resolve, reject)=> {
-
+			var prods = productsRepository.getAll();
 			var regexp = new RegExp(filter);
-			var filtered = filter ? productsMockup.filter( (product) => {
-				return 	regexp.test(product.description) || regexp.test(product.title)
-			}) : productsMockup;
-
+			var filtered = filter ? prods.filter((product) => {
+				return regexp.test(product.description) || regexp.test(product.title)
+			}) : prods;
 			setTimeout(() => {
 				resolve(_.cloneDeep(filtered));
 			}, AsyncTimeout);
 		});
 	},
-	loadOrders: function () {
+	loadCart : function(){
 		return new Promise((resolve, reject)=> {
 			setTimeout(() => {
-				resolve(ordersMockup.slice());
+				var productsInCart = productsRepository.getAll().filter((p) => {
+					return p.cart > 0;
+				});
+				resolve(productsInCart);
+			}, AsyncTimeout);
+		});
+	},
+	addProductToCart: function (productId) {
+		return new Promise((resolve, reject)=> {
+			var product = productsRepository.get(productId);
+			product.cart++;
+			productsRepository.update(product);
+			setTimeout(() => {
+				var productsInCart = productsRepository.getAll().filter((p) => {
+					return p.cart > 0;
+				});
+				resolve(productsInCart);
+			}, AsyncTimeout);
+		});
+	},
+	loadOrders: function () {
+		return new Promise((resolve, reject)=> {
+
+			setTimeout(() => {
+				resolve(ordersRepository.getAll());
 			}, AsyncTimeout);
 		});
 	},
@@ -64,19 +86,25 @@ var ShopService = {
 
 		return new Promise((resolve, reject)=> {
 
-			ordersMockup.push({
-				id: ordersMockup.length + OrderSeed,
+			var nextId = ordersRepository.count() + 1;
+			
+			ordersRepository.insert({
+				id: nextId + OrderSeed,
 				date: new Date(),
-				products: orderedProducts.map(_.clone)
+				products: _.cloneDeep(orderedProducts)
 			});
 
-			for (let i = 0; i < orderedProducts.length; ++i) {
-				let pi = findProductById(orderedProducts[i].id);
-				productsMockup[pi].stock -= productsMockup[pi].cart;
-				productsMockup[pi].cart = 0;
+			// update products
+			var prods = productsRepository.getAll();
+			for (let i = 0; i < prods.length; ++i) {
+				prods[i].stock -= prods[i].cart;
+				prods[i].cart = 0;
+				productsRepository.update(prods[i]);
 			}
 
-			resolve();
+			setTimeout(() => {
+				resolve(ordersRepository.getAll());
+			}, AsyncTimeout);
 		}, AsyncTimeout);
 	}
 };

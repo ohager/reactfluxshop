@@ -6,8 +6,10 @@ module.exports = {
 	},
 	ShopAction: {
 		LoadProducts: 'LoadProducts',
+		LoadCart: 'LoadCart',
 		FilterProducts: 'FilterProducts',
-		AddProductToCart: 'AddProductToCart'
+		AddProductToCart: 'AddProductToCart',
+		CreateOrder:'CreateOrder'
 	}
 
 };

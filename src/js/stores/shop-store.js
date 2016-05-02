@@ -16,22 +16,18 @@ Product Example
  */
 
 var _products = Immutable([]);
+var _productsInCart = Immutable([]);
 
 // inheritance by composition - get rid of boilerplate
 var ShopStore = _.assign({}, BaseStore, {
 
-	onLoadProducts: function (products) {
+	updateProducts: function (products) {
 		_products = Immutable(products);
 		this.emitChange();
 	},
 
-	onAddProductToCart : function(product){
-		var mutableProducts = _products.asMutable({deep:true});
-
-		var tocart = _.find(mutableProducts,{'id' : product.id});
-		tocart.cart++;
-
-		_products = Immutable(mutableProducts);
+	updateCart : function(productsInCart){
+		_productsInCart = Immutable(productsInCart);
 		this.emitChange();
 	},
 
@@ -40,22 +36,18 @@ var ShopStore = _.assign({}, BaseStore, {
 	},
 
 	getProductsInCart: function () {
-		return Immutable(_products.filter(function(p){
-			return p.cart > 0;
-		}));
+		return _productsInCart;
 	}
 });
 
 ShopStore.dispatchToken = Dispatcher.register(function (action) {
 	switch (action.actionType) {
 		case Constants.ShopAction.LoadProducts:
-			ShopStore.onLoadProducts(action.products);
-			break;
-		case Constants.ShopAction.FilterProducts:
-			ShopStore.onFilterProducts(action.filter);
+			ShopStore.updateProducts(action.products);
 			break;
 		case Constants.ShopAction.AddProductToCart:
-			ShopStore.onAddProductToCart(action.product);
+		case Constants.ShopAction.LoadCart:
+			ShopStore.updateCart(action.productsInCart);
 			break;
 	}
 });
